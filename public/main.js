@@ -7,6 +7,8 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(data){
                 var select = document.getElementById('section');
+                select.options.length = 0;
+                $('select').material_select();
                 data.section.forEach(function(element) {
                     console.log(element);
                     var opt = document.createElement('option');
