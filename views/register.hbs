@@ -1,0 +1,68 @@
+<div class="col s12">
+    <div class="container">
+        <div class="section">
+            <h2 align="center">Register</h2>
+        </div>
+        <div class="section">
+            <div class="row">
+                <form class="col s12" method="post">
+                <div class="row">
+                    <div class="input-field col s12">
+                    <input name="name" type="text" class="validate">
+                    <label for="name">Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                    <input name="phone" type="text" class="validate">
+                    <label for="phone">Phone</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                    <textarea name="address" class="materialize-textarea"></textarea>
+                    <label for="address">Address</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                    <input name="father" type="text" class="validate">
+                    <label for="father">Father</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <select name="standard">
+                        <option value="" disabled selected>Choose your option</option>
+                        {{#each standard}}
+                        <option value="{{this._id}}">{{code}}</option>
+                        {{/each}}
+                        {{!--<option value="2">Option 2</option>
+                        <option value="3">Option 3</option>--}}
+                        </select>
+                        <label>Standard</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <select id="section" name="section">
+                        <option value="" disabled selected>Choose your option</option>
+                        
+                        {{!--<option value="2">Option 2</option>
+                        <option value="3">Option 3</option>--}}
+                        </select>
+                        <label>Section</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <div class="section">
+                            <center>
+                            <div class="container">
+                                <button type="submit" class="btn large">Register</button>
+                            </div>
+                            </center>
+                        </div>
+                    </div>                    
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
