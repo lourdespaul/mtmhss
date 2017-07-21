@@ -27,8 +27,8 @@ router.post('/', (req, res)=>{
             name: data.name.trim(),
             dob: data.dob ? new Date(data.dob): Date.now(),
             phone: data.phone.trim(),
-            father: data.father.trim(),
-            address: data.address.trim(),
+            father: data.father? data.father.trim(): null,
+            address: data.address? data.address.trim(): null,
             standard: data.standard
         });
         Standard.findById(data.standard)
