@@ -10,6 +10,7 @@ const dbConnection = require('./database/config');
 const home = require('./routes/home');
 const clas = require('./routes/clas');
 const register = require('./routes/register');
+const sms = require('./routes/sms');
 
 mongoose.Promise = global.Promise;
 
@@ -29,7 +30,7 @@ app.use(cookieParser());
 app.use('/',home);
 app.use('/class', clas);
 app.use('/register', register);
-
+app.use('/sms', sms);
 
 app.listen(3000, ()=>{
     console.log("Server is running on port 3000");
