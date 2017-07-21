@@ -25,7 +25,7 @@ router.post('/', (req, res)=>{
     if(data.standard != "" && data.section != "" && data.phone.length == 10){
         const student = new Student({
             name: data.name.trim(),
-            dob: data.dob,
+            dob: data.dob ? new Date(data.dob): Date.now(),
             phone: data.phone.trim(),
             father: data.father.trim(),
             address: data.address.trim(),

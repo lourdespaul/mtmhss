@@ -9,7 +9,7 @@
                 
                 <div class="row">
                     <div class="input-field col s6">
-                        <select name="sms-standard">
+                        <select name="sms_standard">
                         <option value="ALL" selected>ALL</option>
                         {{#each standards}}
                         <option value="{{this._id}}">{{code}}</option>
@@ -18,7 +18,7 @@
                         <label>Standard</label>
                     </div>
                     <div class="input-field col s6">
-                        <select id="sms-section" name="sms-section" disabled>
+                        <select id="sms_section" name="sms_section" hidden>
                         <option value="" disabled selected>Choose your option</option>
                         </select>
                         <label>Section</label>

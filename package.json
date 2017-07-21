@@ -17,6 +17,7 @@
     "hbs": "^4.0.1",
     "materialize-css": "^0.99.0",
     "mongoose": "^4.11.0",
+    "msg91-sms": "^1.0.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "path": "^0.12.7"
