@@ -1,4 +1,5 @@
 const express = require('express');
+const msg91 = require('msg91-sms');
 const router = express.Router();
 
 const Standard = require('../models/standard');
@@ -14,13 +15,15 @@ router.get('/', (req, res)=>{
 
 router.post('/', (req, res)=>{
     const data = req.body;
-    if(data.text != "" && data.standard != ""){
-        if(data.standard != "ALL"){
-            if(data.section==null || data.section == ""){
-                Standard.findById(data.standard).populate('section').exec((err, result)=>{
+    console.log(data);
+    if(data.text != "" && data.sms_standard != ""){
+        if(data.sms_standard != "ALL"){
+            if(data.sms_section == "ALL"){
+                Standard.findById(data.sms_standard).populate('section').exec((err, result)=>{
                     let numbers = [];
+                    console.log(result)
                     result.section.forEach(function(element) {
-                        element.student.forEach(function(student){
+                        element.students.forEach(function(student){
                             Student.findById(element.student).exec((err, stu)=>{
                                 numbers.push(stu.phone);
                             })
@@ -30,10 +33,30 @@ router.post('/', (req, res)=>{
                     res.send(numbers)
                 });
             }else{
-                
+                let numbers =[];
+                Section.findById(data.sms_section).populate('students').exec((err, result)=>{
+                    result.students.forEach(function(student){
+                        numbers.push(student.phone);
+                    });
+
+                });
             }
+        }else{
+            let numbers = [];
+            Student.find({}, (err, student)=>{
+                student.forEach(function(element){
+                    numbers.push(element.phone);
+                }, this);
+                msg91.sendMultiple("153760A7ehQ8Uc5926af23",numbers,data.text,"MTMHSS","4","91",function(response){
+ 
+                    //Returns Message ID, If Sent Successfully or the appropriate Error Message 
+                    if(response) res.send({response: response, message: "Sent successfully"})
+                
+                });
+
+            });
         }
     }
-})
+});
 
 module.exports = router;
