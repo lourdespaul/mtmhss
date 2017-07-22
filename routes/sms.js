@@ -19,7 +19,7 @@ router.post('/', (req, res)=>{
     if(data.text != "" && data.sms_standard != ""){
         if(data.sms_standard != "ALL"){
             if(data.sms_section == "ALL"){
-                Standard.findById(sms_standard).populate({path:'section',populate:{path:'students'}}).exec((err, result)=>{
+                Standard.findById(data.sms_standard).populate({path:'section',populate:{path:'students'}}).exec((err, result)=>{
                     res.send(result);
                 })
             }else{
