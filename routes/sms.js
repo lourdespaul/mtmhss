@@ -20,8 +20,14 @@ router.post('/', (req, res)=>{
         if(data.sms_standard != "ALL"){
             if(data.sms_section == "ALL"){
                 Standard.findById(data.sms_standard).populate({path:'section',populate:{path:'students'}}).exec((err, result)=>{
-                    res.send(result);
-                })
+                    let numbers = [];
+                    result.section.forEach((section)=>{
+                        section.students.forEach((student)=>{
+                            numbers.push(student.phone);
+                        });
+                    });
+                    res.send(numbers);
+                });
             }else{
                 let numbers =[];
                 Section.findById(data.sms_section).populate('students').exec((err, result)=>{
