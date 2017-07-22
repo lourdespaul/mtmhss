@@ -26,7 +26,13 @@ router.post('/', (req, res)=>{
                             numbers.push(student.phone);
                         });
                     });
-                    res.send(numbers);
+                    // res.send(numbers);
+                    msg91.sendMultiple("153760A7ehQ8Uc5926af23",numbers,data.text,"MTMHSS","4","91",function(response){
+ 
+                    // Returns Message ID, If Sent Successfully or the appropriate Error Message 
+                    if(response) res.send({response: response, message: "Sent successfully"})
+                
+                });
                 });
             }else{
                 let numbers =[];
@@ -34,7 +40,12 @@ router.post('/', (req, res)=>{
                     result.students.forEach(function(student){
                         numbers.push(student.phone);
                     });
-
+                    msg91.sendMultiple("153760A7ehQ8Uc5926af23",numbers,data.text,"MTMHSS","4","91",function(response){
+ 
+                    // Returns Message ID, If Sent Successfully or the appropriate Error Message 
+                        if(response) res.send({response: response, message: "Sent successfully"})
+                
+                    });
                 });
             }
         }else{
