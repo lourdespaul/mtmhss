@@ -47,7 +47,7 @@ router.post('/', (req, res)=>{
                 student.forEach(function(element){
                     numbers.push(element.phone);
                 }, this);
-                res.send(numbers);
+                res.send(numbers.length);
                 // msg91.sendMultiple("153760A7ehQ8Uc5926af23",numbers,data.text,"MTMHSS","4","91",function(response){
  
                     //Returns Message ID, If Sent Successfully or the appropriate Error Message 
