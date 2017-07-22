@@ -19,19 +19,9 @@ router.post('/', (req, res)=>{
     if(data.text != "" && data.sms_standard != ""){
         if(data.sms_standard != "ALL"){
             if(data.sms_section == "ALL"){
-                Standard.findById(data.sms_standard).populate('section').exec((err, result)=>{
-                    let numbers = [];
-                    console.log(result)
-                    result.section.forEach(function(element) {
-                        element.students.forEach(function(student){
-                            Student.findById(element.student).exec((err, stu)=>{
-                                numbers.push(stu.phone);
-                            })
-                        }, this)
-                    }, this);
-                    console.log(numbers);
-                    res.send(numbers)
-                });
+                Standard.findById(sms_standard).populate({path:'section',populate:{path:'students'}}).exec((err, result)=>{
+                    res.send(result);
+                })
             }else{
                 let numbers =[];
                 Section.findById(data.sms_section).populate('students').exec((err, result)=>{
